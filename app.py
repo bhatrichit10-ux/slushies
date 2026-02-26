@@ -22,9 +22,19 @@ def club_stats(clubname):
     if not data:
         return render_template('error.html', message="not found?!?")
     
+    fields = data.get("fields", {})
+
     return render_template(
         'club.html',
-        club=data
+        club_name=fields.get("club_name"),
+        status=fields.get("club_status"),
+        level=fields.get("level"),
+        attendees=fields.get("Est. # of Attendees"),
+        meeting_days=fields.get("call_meeting_days"),
+        meeting_length=fields.get("call_meeting_length"),
+        country=fields.get("venue_address_country"),
+        created_time=data.get("createdTime")
+
     )
 @app.route('/about')
 def abt():
