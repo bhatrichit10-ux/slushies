@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clubs-API Dash</title>
+    <title>Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div>
-        <h1> See your club stats!</h1>
-        <h2> Enter your club name</h2>
-        
-    </div>
+     <div class="container">
+        <h1> Club Stats Dashboard</h1>
+        <form id="searchForm" id="clubname" placeholder="Enter club name, case sensitive" required>
+            <input type="text" name="clubname" id="clubname" placeholder="Enter club name, case sensitive" required>
+            <button type="submit">Search</button>
+        </form>
+        <script>
+            const form = document.getElementById("searchForm");
+             form.addEventListener("submit", function(a) {
+                a.preventDefault();
+                const clubname = document.getElementById("clubname").value;
+                const formatted = name.replace(/\s+/g, '-')
+                window.location.href = `/club/${formatted}`;
+             })
+        </script>
 </body>
 </html>
