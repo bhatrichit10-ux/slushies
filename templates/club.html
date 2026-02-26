@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ club.club_name }} - Stats</title>
+    <title>{{ club_name }} - Stats</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 <body>
     <div class="container">
-        <h1>{{ club.name }} - Stats</h1>
+        <h1>{{ club_name }} - Stats</h1>
     </div>
     <div class="card">
-        <p> {{ club }}</p>
+        <p> Status - {{ status }}</p>
+        <p> Level- {{ level }}</p>
+        <p> Attendees Estimated - {{ attendees }}</p>
+        <p> Meeting Days- {{ meeting_days }}</p>
+        <p> Meeting Length- {{ meeting_length }}</p>
+        <p> Country- {{ country }}</p>
+        <p> Time of Creation- {{ created_time }}</p>
     </div>
 
 </body>

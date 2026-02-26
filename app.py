@@ -11,17 +11,20 @@ def home():
 
 @app.route('/club/<clubname>')
 def club_stats(clubname):
-    formatted_name = clubname
-
     try:
-        response = requests.get(f"{API}?name={formatted_name}")
+        response = requests.get(API, params={"name": clubname})
         response.raise_for_status()
         data = response.json()
-    except:
-        return render_template("error.html", message='API error')
+    except requests.RequestException:
+        return render_template("error.html", message="API error")
+
     if not data:
-        return render_template('error.html', message="not found?!?")
-    
+        return render_template("error.html", message="Club not found")
+
+        if len(data) == 0:
+            return render_template("error.html", message="Club not found")
+        data = data[0]
+
     fields = data.get("fields", {})
 
     return render_template(
@@ -30,12 +33,12 @@ def club_stats(clubname):
         status=fields.get("club_status"),
         level=fields.get("level"),
         attendees=fields.get("Est. # of Attendees"),
-        meeting_days=fields.get("call_meeting_days"),
+        meeting_days=fields.get("call_meeting_days", []),
         meeting_length=fields.get("call_meeting_length"),
         country=fields.get("venue_address_country"),
         created_time=data.get("createdTime")
-
     )
+
 @app.route('/about')
 def abt():
     return render_template('about.html')
