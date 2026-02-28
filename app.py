@@ -10,13 +10,13 @@ API = "https://clubapi.hackclub.com/club"
 def home():
     return render_template('index.html')
 
-@app.route('/   club/<clubname>')
+@app.route('/club/<clubname>')
 def club_stats(clubname):
     try:
         response = requests.get(API, params={"name": clubname})
         response.raise_for_status()
         data = response.json()
-    except requests.RequestException:
+    except  requests.RequestException:
         return render_template("error.html", message="API error")
 
     if not data:
