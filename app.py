@@ -5,11 +5,12 @@ app = Flask(__name__)
 
 API = "https://clubapi.hackclub.com/club"
 
-@app.route('/')
+@app.route("/")
+@app.route("/index")
 def home():
     return render_template('index.html')
 
-@app.route('/club/<clubname>')
+@app.route('/   club/<clubname>')
 def club_stats(clubname):
     try:
         response = requests.get(API, params={"name": clubname})
@@ -23,7 +24,7 @@ def club_stats(clubname):
 
         if len(data) == 0:
             return render_template("error.html", message="Club not found")
-        data = data[0]
+        data = data[0]  
 
     fields = data.get("fields", {})
 
@@ -38,10 +39,6 @@ def club_stats(clubname):
         country=fields.get("venue_address_country"),
         created_time=data.get("createdTime")
     )
-
-@app.route('/about')
-def abt():
-    return render_template('about.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

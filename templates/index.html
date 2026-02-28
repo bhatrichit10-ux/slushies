@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='dist/output.css')}}">
-</head>
-<body>
-     <div class="container">
-        <h1> Club Stats Dashboard</h1>
-        <form id="searchForm" id="clubname" placeholder="Enter club name, case sensitive" required>
-            <input type="text" name="clubname" id="clubname" placeholder="Enter club name, case sensitive" required>
-            <button type="submit">Search</button>
+<script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-slate-800 text-white min-h-screen flex items-center justify-center">
+     <div class="bg-blue-950 p-8 rounded-xl shadow-xl w-full max-w-md">
+        <h1 class="text-2xl text-amber-50 font-bold text-center mb-6 "> Club Stats Dashboard</h1>
+        <form class="flex flex-col gap-4" id="searchForm" placeholder="Enter club name, case sensitive" required>
+            <input class='px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400 transition' type="text" name="clubname" id="clubname" placeholder="Enter club name, case sensitive" required>
+            <button class="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-2 rounded-lg transition duration-200" type="submit">Search</button>
         </form>
         <script>
             const form = document.getElementById("searchForm");
